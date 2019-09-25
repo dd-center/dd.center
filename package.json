@@ -1,0 +1,13 @@
+{
+  "name": "dd.center",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dd-center/dd.center.git"
+  },
+  "author": "simon3000 <simon3000@163.com>",
+  "license": "SEE LICENSE IN FILES",
+  "bugs": {
+    "url": "https://github.com/dd-center/dd.center/issues"
+  },
+  "homepage": "https://github.com/dd-center/dd.center#readme"
+}
