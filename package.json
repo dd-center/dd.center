@@ -9,5 +9,9 @@
   "bugs": {
     "url": "https://github.com/dd-center/dd.center/issues"
   },
-  "homepage": "https://github.com/dd-center/dd.center#readme"
+  "homepage": "https://github.com/dd-center/dd.center#readme",
+  "dependencies": {
+    "koa": "^2.8.2",
+    "koa-send": "^5.0.0"
+  }
 }
