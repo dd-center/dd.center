@@ -3,7 +3,11 @@ const send = require('koa-send')
 const fs = require('fs').promises
 const { join } = require('path')
 
+const api = require('./api')
+
 const app = new Koa()
+
+app.use(api.routes())
 
 const subrouters = ['demo1', 'demo2']
 
