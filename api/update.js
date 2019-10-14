@@ -5,22 +5,29 @@ const update = new Router({
   prefix: '/update'
 })
 
+const getLatestURL = async ({ file, repo, owner = 'dd-center' }) => {
+  const { body: releases } = await got(`https://api.github.com/repos/${owner}/${repo}/releases`, { json: true })
+  const asset = releases
+    .flatMap(({ assets }) => assets)
+    .find(({ name }) => name === file)
+  if (asset) {
+    return asset.browser_download_url
+  }
+}
+
+const relays = {
+  ddatelectron: { repo: 'DDatElectron' },
+  ddmonitor: { repo: 'bili-dd-monitor' }
+}
+
 update.get('/:name/:file', async ctx => {
   const { name, file } = ctx.params
-  if (name === 'ddatelectron') {
-    ctx.body = await got(`https://github.com/dd-center/DDatElectron/releases/latest/download/${file}`, { stream: true })
-  }
-  if (name === 'ddmonitor') {
-    const releases = JSON.parse((await got(`https://api.github.com/repos/dd-center/bili-dd-monitor/releases`)).body);
-    ctx.body = await got(await new Promise((resolve) => {
-      releases.forEach(release => {
-        release.assets.forEach(asset => {
-          if (asset.name === file) {
-            resolve(asset.browser_download_url);
-          }
-        })
-      })
-    }), { stream: true })
+  const match = relays[name]
+  if (match) {
+    const url = await getLatestURL({ file, ...match })
+    if (url) {
+      ctx.body = got(url, { stream: true })
+    }
   }
 })
 
