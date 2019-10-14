@@ -10,6 +10,9 @@ update.get('/:name/:file', ctx => {
   if (name === 'ddatelectron') {
     ctx.body = got(`https://github.com/dd-center/DDatElectron/releases/latest/download/${file}`, { stream: true })
   }
+  if (name === 'ddmonitor'){
+    ctx.body = got(`https://github.com/dd-center/bili-dd-monitor/releases/latest/download/${file}`,{ stream: true })
+  }
 })
 
 module.exports = update
