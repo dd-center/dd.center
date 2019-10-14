@@ -16,16 +16,10 @@ http.createServer((req, res) => {
 handler.on('error', console.error)
 
 handler.on('release', async ({ payload: { action } }) => {
-  if (action === '') {
+  if (action === 'published') {
     console.log('release')
     const { stdout, stderr } = await asyncExec('sh deploy.sh')
     console.log(stdout)
     console.error(stderr)
   }
-});
-(async () => {
-  console.log('release')
-  const { stdout, stderr } = await asyncExec('sh deploy.sh')
-  console.log(stdout)
-  console.error(stderr)
-})()
+})
