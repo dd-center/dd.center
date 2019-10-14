@@ -11,6 +11,8 @@
   },
   "homepage": "https://github.com/dd-center/dd.center#readme",
   "dependencies": {
+    "dotenv": "^8.1.0",
+    "github-webhook-handler": "^1.0.0",
     "got": "^9.6.0",
     "koa": "^2.8.2",
     "koa-router": "^7.4.0",
