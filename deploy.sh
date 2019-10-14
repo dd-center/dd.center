@@ -1,3 +1,5 @@
+git pull
+
 rm -r dist
 
 curl -s https://api.github.com/repos/dd-center/dd.center/releases/latest \
@@ -8,5 +10,7 @@ curl -s https://api.github.com/repos/dd-center/dd.center/releases/latest \
 tar -xzf dist.tar.gz
 
 rm dist.tar.gz
+
+npm i
 
 pm2 restart ecosystem.config.js
