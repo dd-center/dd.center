@@ -8,3 +8,5 @@ curl -s https://api.github.com/repos/dd-center/dd.center/releases/latest \
 tar -xzf dist.tar.gz
 
 rm dist.tar.gz
+
+pm2 restart ecosystem.config.js
