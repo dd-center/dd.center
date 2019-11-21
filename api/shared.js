@@ -12,5 +12,6 @@ exports.getLatestURL = async ({ file, repo, owner = 'dd-center' }) => {
 
 exports.relays = {
   ddatelectron: { repo: 'DDatElectron' },
-  ddmonitor: { repo: 'bili-dd-monitor' }
+  ddmonitor: { repo: 'bili-dd-monitor' },
+  lavender: { repo: 'Lavendelhonig' }
 }
