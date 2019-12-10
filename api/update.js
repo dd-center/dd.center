@@ -1,5 +1,5 @@
 const Router = require('koa-router')
-const got = require('got')
+const { stream } = require('got')
 
 const { getLatestURL, relays } = require('./shared')
 
@@ -13,7 +13,7 @@ update.get('/:name/:file', async ctx => {
   if (match) {
     const url = await getLatestURL({ file, ...match })
     if (url) {
-      ctx.body = got(url, { stream: true })
+      ctx.body = stream(url)
     }
   }
 })

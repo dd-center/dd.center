@@ -20,14 +20,14 @@ latest.get('/:name/:platform', async ctx => {
   const ymlFile = fileMap[platform]
   if (match && ymlFile) {
     const ymlUrl = await getLatestURL({ file: ymlFile, ...match })
-    const { body: yml } = await got(ymlUrl)
+    const yml = await got(ymlUrl).text()
     const { files } = yaml.safeLoad(yml)
     const file = files
       .map(({ url }) => url)
       .find(url => ['exe', 'dmg', 'AppImage'].find(ext => url.endsWith(ext)))
     if (file) {
       const url = await getLatestURL({ file, ...match })
-      ctx.body = got(url, { stream: true })
+      ctx.body = got.stream(url)
     }
   }
 })

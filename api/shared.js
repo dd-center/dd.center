@@ -1,7 +1,7 @@
 const got = require('got')
 
 exports.getLatestURL = async ({ file, repo, owner = 'dd-center' }) => {
-  const { body: releases } = await got(`https://api.github.com/repos/${owner}/${repo}/releases`, { json: true })
+  const releases = await got(`https://api.github.com/repos/${owner}/${repo}/releases`).json()
   const asset = releases
     .flatMap(({ assets }) => assets)
     .find(({ name }) => name === file)
