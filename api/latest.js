@@ -5,7 +5,7 @@ const { promises: { stat, writeFile, unlink }, createReadStream, createWriteStre
 const { join } = require('path')
 const { createHash } = require('crypto')
 
-const { getLatestURL, relays } = require('./shared')
+const { getLatestURL, relays, downloadText } = require('./shared')
 
 const latest = new Router({
   prefix: '/latest'
@@ -83,7 +83,7 @@ latest.get('/:name/:platform', async ctx => {
   const ymlFile = fileMap[platform]
   if (match && ymlFile) {
     const ymlUrl = await getLatestURL({ file: ymlFile, ...match })
-    const yml = await got(ymlUrl).text()
+    const yml = await downloadText(ymlUrl)
     const { files } = yaml.safeLoad(yml)
     const { url: file, sha512 } = files
       .find(({ url }) => ['exe', 'dmg', 'AppImage'].find(ext => url.endsWith(ext))) || {}
