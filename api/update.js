@@ -14,10 +14,11 @@ update.get('/:name/:file', async ctx => {
     const { browser_download_url: url, size } = await getLatest({ file, ...match })
     if (url) {
       if (url.endsWith('yml')) {
-        ctx.body = await stream(url)
+        ctx.body = stream(url)
       } else {
         const fileName = url.split('/').reverse()[0]
         ctx.response.attachment(fileName)
+        ctx.response.length = size
         ctx.body = await getCache(url, { size })
       }
     }
