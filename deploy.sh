@@ -13,4 +13,5 @@ rm dist.tar.gz
 
 npm i
 
-pm2 restart ecosystem.config.js
+pm2 stop ecosystem.config.js
+pm2 start ecosystem.config.js
