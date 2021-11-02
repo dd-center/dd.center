@@ -22,7 +22,7 @@ proxy.post('/access_token', async ctx => {
 proxy.get('/y/*', async ctx => {
   const url = ctx.path.replace('/api/proxy/y/', '')
   ctx.set('Access-Control-Allow-Origin', 'https://simon300000.youngmoe.com')
-  ctx.body = await got(url).json()
+  ctx.body = await got(new URL(url)).json()
 })
 
 module.exports = proxy
