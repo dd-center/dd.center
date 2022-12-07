@@ -15,7 +15,7 @@
     "github-webhook-handler": "^1.0.0",
     "got": "^10.0.3",
     "js-yaml": "^3.13.1",
-    "koa": "^2.8.2",
+    "koa": "^2.14.1",
     "koa-body": "^4.2.0",
     "koa-router": "^7.4.0",
     "koa-send": "^5.0.0"
